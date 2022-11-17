@@ -27,7 +27,8 @@
                     <b>Description:</b> {{ dt.description }}
                 </div>
                 <div class="card-footer text-center text-muted">
-                    <a href="#">Edit</a> | <a href="#">Delete</a>
+                    <a href="{% url 'disease_type_edit' dt.pk %}">Edit</a> | 
+                    <a href="{% url 'disease_type_delete' dt.pk %}">Delete</a>
                 </div>
             </div>
         </div>
