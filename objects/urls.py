@@ -2,9 +2,9 @@ from django.urls import path
 
 from .views import (
     HomePageView,
-    DiseaseTypeListView, DiseaseTypeUpdateView, DiseaseTypeDeleteView, DiseaseTypeCreateView,
+    DiseaseTypeListView, DiseaseTypeUpdateView, DiseaseTypeDeleteView, DiseaseTypeCreateView, list_diseases_by_type,
     DiseaseListView, DiseaseDetailView, DiseaseUpdateView, DiseaseDeleteView, DiseaseCreateView,
-    CountryListView, CountryDetailView, CountryUpdateView, CountryDeleteView, CountryCreateView
+    CountryListView, CountryDetailView, CountryUpdateView, CountryDeleteView, CountryCreateView,
 )
 
 
@@ -21,6 +21,7 @@ urlpatterns = [
     path('diseases/<str:pk>/', DiseaseDetailView.as_view(), name='disease_detail'),
     path('diseases/', DiseaseListView.as_view(), name='disease_list'),
 
+    path('disease_types/<int:pk>/diseases/', list_diseases_by_type, name='disease_type_diseases'),
     path('disease_types/<int:pk>/edit/', DiseaseTypeUpdateView.as_view(), name='disease_type_edit'), 
     path('disease_types/<int:pk>/delete/', DiseaseTypeDeleteView.as_view(), name='disease_type_delete'),
     path('disease_types/new/', DiseaseTypeCreateView.as_view(), name='disease_type_new'),

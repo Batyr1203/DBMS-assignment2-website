@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Disease of type {{ disease_type_id }} {% endblock title %}
+
+{% block content %}
+<h2>Disease of type {{ disease_type_id }}: {{disease_type}} </h2>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Disease Code</th>
+        <th scope="col">Pathogen</th>
+        <th scope="col">Description</th>
+        <th scope="col">Disease Type</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for d in diseases %}
+            <tr>
+                <td><a href="{% url 'disease_detail' d.disease_code %}">{{ d.disease_code }}</a></td>
+                <td>{{ d.pathogen }}</td>
+                <td>{{ d.description }}</td>
+                <td>{{ d.id.description }}</td>
+            </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content %}

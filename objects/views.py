@@ -2,8 +2,11 @@ from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
-from .models import DiseaseType, Disease, Country
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
 
+from .models import DiseaseType, Disease, Country
 
 
 class HomePageView(TemplateView):
@@ -34,6 +37,22 @@ class DiseaseTypeCreateView(CreateView):
     template_name = 'disease_type/disease_type_new.html'
     fields = ('description',)
     success_url = reverse_lazy('disease_type_list')
+
+
+# class DiseaseTypeDiseasesListView(ListView):
+#     model = Disease
+#     template_name = 'disease_type/disease_type_diseases.html'
+
+def list_diseases_by_type(request, pk):
+    diseases = Disease.objects.filter(id=pk)
+    template = loader.get_template('disease_type/disease_type_diseases.html')
+    context = {
+        'disease_type_id': pk,
+        'disease_type': DiseaseType.objects.get(id=pk).description,
+        'diseases': diseases,
+    }    
+    return HttpResponse(template.render(context, request))
+
 
 
 #################################### COUNTRY ###############################################

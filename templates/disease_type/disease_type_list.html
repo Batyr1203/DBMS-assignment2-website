@@ -3,6 +3,8 @@
 {% block title %}Disease Types{% endblock title %}
 
 {% block content %}
+<h2>List of all disease types</h2>
+<br>
 <div class="container">
     <div class="row">
         {% for dt in diseasetype_list %}
@@ -29,6 +31,9 @@
                 <div class="card-footer text-center text-muted">
                     <a href="{% url 'disease_type_edit' dt.pk %}">Edit</a> | 
                     <a href="{% url 'disease_type_delete' dt.pk %}">Delete</a>
+                </div>
+                <div class="card-footer text-center text-muted">
+                    <a href="{% url 'disease_type_diseases' dt.id %}">Show related diseases</a>
                 </div>
             </div>
         </div>
