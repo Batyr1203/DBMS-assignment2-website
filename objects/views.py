@@ -1,8 +1,8 @@
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
-from .models import DiseaseType, Disease
+from .models import DiseaseType, Disease, Country
 
 
 
@@ -36,9 +36,75 @@ class DiseaseTypeCreateView(CreateView):
     success_url = reverse_lazy('disease_type_list')
 
 
+#################################### COUNTRY ###############################################
+
+class CountryListView(ListView):
+    model = Country
+    template_name = 'country/country_list.html'
+
+
+class CountryDetailView(DetailView):
+    model = Country
+    template_name = 'country/country_detail.html'
+
+
+class CountryUpdateView(UpdateView):
+    model = Country
+    fields = ('cname', 'population')
+    template_name = 'country/country_edit.html'
+
+
+class CountryDeleteView(DeleteView):
+    model = Country
+    template_name = 'country/country_delete.html'
+    success_url = reverse_lazy('country_list')
+
+
+class CountryCreateView(CreateView):
+    model = Country
+    template_name = 'country/country_new.html'
+    fields = ('cname', 'population')
+
 
 #################################### DISEASE ###############################################
 
 class DiseaseListView(ListView):
     model = Disease
     template_name = 'disease/disease_list.html'
+
+
+class DiseaseDetailView(DetailView):
+    model = Disease
+    template_name = 'disease/disease_detail.html'
+
+
+class DiseaseUpdateView(UpdateView):
+    model = Disease
+    fields = (
+        'disease_code',
+        'pathogen',
+        'description',
+        'id',
+    )
+    template_name = 'disease/disease_edit.html'
+    success_url = reverse_lazy('disease_list')
+
+
+class DiseaseDeleteView(DeleteView):
+    model = Disease
+    template_name = 'disease/disease_delete.html'
+    success_url = reverse_lazy('disease_list')
+
+
+class DiseaseCreateView(CreateView):
+    model = Disease
+    template_name = 'disease/disease_new.html'
+    fields = (
+        'disease_code',
+        'pathogen',
+        'description',
+        'id',
+    )
+#    success_url = reverse_lazy('disease_list')
+
+

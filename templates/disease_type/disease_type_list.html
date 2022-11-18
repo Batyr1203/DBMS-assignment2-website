@@ -7,21 +7,21 @@
     <div class="row">
         {% for dt in diseasetype_list %}
         <div class="col-sm-4">
-            <div class="card border-dark mb-3" style="max-width: 22rem;">
+            <div class="card border-dark mb-3" style="max-width: 18rem;">
                 <div class="card-header">
                     <b>ID:</b> <span class="font-weight-bold">{{ dt.id }}</span>
                 </div>
                 {% if dt.id == 1 %}
                     {% load static %}
-                    <img class="card-img-top" src="{% static 'images/example.png' %}" alt="Card image cap" height="200">
+                    <img class="card-img-top" src="{% static 'images/example.png' %}" alt="Card image cap" height="150">
                 {% elif dt.id == 2 %}
-                    <img class="card-img-top" src="{% static 'images/parasites.jpeg' %}" alt="Card image cap" height="200">
+                    <img class="card-img-top" src="{% static 'images/parasites.jpeg' %}" alt="Card image cap" height="150">
                 {% elif dt.id == 5 %}
-                    <img class="card-img-top" src="{% static 'images/physiology.jpg' %}" alt="Card image cap" height="200">
+                    <img class="card-img-top" src="{% static 'images/physiology.jpg' %}" alt="Card image cap" height="150">
                 {% elif dt.id == 6 %}
-                    <img class="card-img-top" src="{% static 'images/hereditary.jpg' %}" alt="Card image cap" height="200">
+                    <img class="card-img-top" src="{% static 'images/hereditary.jpg' %}" alt="Card image cap" height="150">
                 {% else %}
-                    <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="Card image cap" height="200">
+                    <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="Card image cap" height="150">
                 {% endif %}
                 <div class="card-body">
                     <b>Description:</b> {{ dt.description }}

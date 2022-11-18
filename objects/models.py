@@ -13,6 +13,21 @@ class DiseaseType(models.Model):
     #     return reverse('disease_type_detail', kwargs={'pk': self.pk})
 
 
+class Country(models.Model):
+    class Meta:
+        verbose_name_plural = "Countries"
+
+    cname = models.CharField(max_length=50, primary_key=True)
+    population = models.PositiveBigIntegerField()
+
+    def __str__(self):
+        return self.cname
+
+    def get_absolute_url(self):
+        return reverse('country_detail', kwargs={'pk': self.pk})
+
+
+
 class Disease(models.Model):
     disease_code = models.CharField(max_length=50, primary_key=True)
     pathogen = models.CharField(max_length=20)
@@ -21,4 +36,8 @@ class Disease(models.Model):
 
     def __str__(self):
         return self.disease_code
+
+    def get_absolute_url(self):
+        return reverse('disease_detail', kwargs={'pk': self.pk})
+
 

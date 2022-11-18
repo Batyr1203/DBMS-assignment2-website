@@ -15,7 +15,7 @@
     <tbody>
     {% for d in disease_list %}
         <tr>
-            <td>{{ d.disease_code }}</td>
+            <td><a href="{% url 'disease_detail' d.pk %}">{{ d.disease_code }}</a></td>
             <td>{{ d.pathogen }}</td>
             <td>{{ d.description }}</td>
             <td>{{ d.id.description }}</td>
@@ -24,7 +24,7 @@
     </tbody>
   </table>
 
-  <p><a href="#">Add a new record</a></p>
+  <p><a href="{% url 'disease_new' %}">Add a new record</a></p>
 
 
 {% endblock content %}

@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="article-entry">
+    <h2>{{ disease.disease_code }}</h2>
+    <p><b>Pathogen:</b> &nbsp; {{ disease.pathogen }}</p>
+    <p><b>Description:</b> &nbsp; {{ disease.description }}</p>
+    <p><b>Disease Type (ID | Description):</b> &nbsp; ({{disease.id}}) | {{ disease.id.description }}</p>
+</div>
 
-{% block content %}
+<p><a href="{% url 'disease_edit' disease.disease_code %}">Edit</a> |
+    <a href="{% url 'disease_delete' disease.disease_code %}">Delete</a></p>
+<p>Back to <a href="{% url 'disease_list' %}">diseases list</a>.</p>
+{% endblock content %}

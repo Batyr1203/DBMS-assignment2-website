@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Countries{% endblock title %}
+
+{% block content %}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Country</th>
+        <th scope="col">Population</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for c in country_list %}
+        <tr>
+            <td><a href="{% url 'country_detail' c.pk %}">{{ c.cname }}</a></td>
+            <td>{{ c.population }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <p><a href="{% url 'country_new' %}">Add a new country</a></p>
+
+
+{% endblock content %}

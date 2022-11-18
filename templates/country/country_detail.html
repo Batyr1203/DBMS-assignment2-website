@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="article-entry">
+    <h2>{{ country.cname }}</h2>
+    <p><b>Population:</b> &nbsp; {{ country.population }}</p>
+</div>
+
+<p><a href="{% url 'country_edit' country.cname %}">Edit</a> |
+    <a href="{% url 'country_delete' country.cname %}">Delete</a></p>
+<p>Back to <a href="{% url 'country_list' %}">countries list</a>.</p>
+{% endblock content %}
