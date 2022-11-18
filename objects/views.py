@@ -2,12 +2,14 @@ from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
-from .models import DiseaseType
+from .models import DiseaseType, Disease
+
 
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
 
+#################################### DISEASE_TYPE ###############################################
 
 class DiseaseTypeListView(ListView):
     model = DiseaseType
@@ -34,3 +36,9 @@ class DiseaseTypeCreateView(CreateView):
     success_url = reverse_lazy('disease_type_list')
 
 
+
+#################################### DISEASE ###############################################
+
+class DiseaseListView(ListView):
+    model = Disease
+    template_name = 'disease/disease_list.html'

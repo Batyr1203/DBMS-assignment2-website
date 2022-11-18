@@ -11,3 +11,14 @@ class DiseaseType(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse('disease_type_detail', kwargs={'pk': self.pk})
+
+
+class Disease(models.Model):
+    disease_code = models.CharField(max_length=50, primary_key=True)
+    pathogen = models.CharField(max_length=20)
+    description = models.CharField(max_length=140)
+    id = models.ForeignKey(DiseaseType, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.disease_code
+

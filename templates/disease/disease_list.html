@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Disease{% endblock title %}
+
+{% block content %}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Disease Code</th>
+        <th scope="col">Pathogen</th>
+        <th scope="col">Description</th>
+        <th scope="col">Disease Type</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for d in disease_list %}
+        <tr>
+            <td>{{ d.disease_code }}</td>
+            <td>{{ d.pathogen }}</td>
+            <td>{{ d.description }}</td>
+            <td>{{ d.id.description }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <p><a href="#">Add a new record</a></p>
+
+
+{% endblock content %}
