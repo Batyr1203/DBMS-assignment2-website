@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="article-entry">
+    <h2>{{ user.email }}</h2>
+    <p><b>Name:</b> &nbsp; {{ user.name }}</p>
+    <p><b>Surname:</b> &nbsp; {{ user.surname }}</p>
+    <p><b>Salary:</b> &nbsp; {{ user.salary }}</p>
+    <p><b>Phone:</b> &nbsp; {{ user.phone }}</p>
+    <p><b>Country:</b> &nbsp; {{ user.cname }}</p>
+</div>
+
+<p><a href="{% url 'user_edit' user.email %}">Edit</a> |
+    <a href="{% url 'user_delete' user.email %}">Delete</a></p>
+{% endblock content %}

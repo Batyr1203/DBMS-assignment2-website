@@ -5,13 +5,26 @@ from .views import (
     DiseaseTypeListView, DiseaseTypeUpdateView, DiseaseTypeDeleteView, DiseaseTypeCreateView, list_diseases_by_type,
     DiseaseListView, DiseaseDetailView, DiseaseUpdateView, DiseaseDeleteView, DiseaseCreateView,
     CountryListView, CountryDetailView, CountryUpdateView, CountryDeleteView, CountryCreateView,
+    DiscoverListView, DiscoverUpdateView, DiscoverDeleteView, DiscoverCreateView,
+    UserListView, UserDetailView, UserUpdateView, UserDeleteView, UserCreateView,
 )
 
 
 urlpatterns = [
+    path('users/<str:pk>/delete', UserDeleteView.as_view(), name='user_delete'),
+    path('users/<str:pk>/edit', UserUpdateView.as_view(), name='user_edit'),
+    path('users/<str:pk>/', UserDetailView.as_view(), name='user_detail'),
+    path('users/new', UserCreateView.as_view(), name='user_new'),    
+    path('users/', UserListView.as_view(), name='user_list'),
+
+    path('discoveries/new', DiscoverCreateView.as_view(), name='discover_new'),
+    path('discoveries/<str:pk>/delete/', DiscoverDeleteView.as_view(), name='discover_delete'),
+    path('discoveries/<str:pk>/edit/', DiscoverUpdateView.as_view(), name='discover_edit'),
+    path('discoveries/', DiscoverListView.as_view(), name='discover_list'),
+
     path('countries/new', CountryCreateView.as_view(), name='country_new'),
-    path('countries/<str:pk>/edit', CountryUpdateView.as_view(), name='country_edit'),
-    path('countries/<str:pk>/delete', CountryDeleteView.as_view(), name='country_delete'),
+    path('countries/<str:pk>/edit/', CountryUpdateView.as_view(), name='country_edit'),
+    path('countries/<str:pk>/delete/', CountryDeleteView.as_view(), name='country_delete'),
     path('countries/<str:pk>/', CountryDetailView.as_view(), name='country_detail'),
     path('countries/', CountryListView.as_view(), name='country_list'),
 

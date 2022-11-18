@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Diseases' Discoveries{% endblock title %}
+
+{% block content %}
+<h2>List of all diseases</h2>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Country</th>
+        <th scope="col">Disease Code</th>
+        <th scope="col">First Encounter Date</th>
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for d in discover_list %}
+        <tr>
+            <td>{{ d.cname }}</a></td>
+            <td>{{ d.disease_code }}</td>
+            <td>{{ d.first_enc }}</td>
+            <td><a href="{% url 'discover_edit' d.pk %}">Edit</a> | <a href="{% url 'discover_delete' d.pk %}">Delete</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <p><a href="{% url 'discover_new' %}">Add a new discovery</a></p>
+
+
+{% endblock content %}

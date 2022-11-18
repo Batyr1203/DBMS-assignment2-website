@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 
-from .models import DiseaseType, Disease, Country
+from .models import DiseaseType, Disease, Country, Discover, User
 
 
 class HomePageView(TemplateView):
@@ -99,12 +99,7 @@ class DiseaseDetailView(DetailView):
 
 class DiseaseUpdateView(UpdateView):
     model = Disease
-    fields = (
-        'disease_code',
-        'pathogen',
-        'description',
-        'id',
-    )
+    fields = ('disease_code', 'pathogen', 'description', 'id',)
     template_name = 'disease/disease_edit.html'
     success_url = reverse_lazy('disease_list')
 
@@ -118,12 +113,62 @@ class DiseaseDeleteView(DeleteView):
 class DiseaseCreateView(CreateView):
     model = Disease
     template_name = 'disease/disease_new.html'
-    fields = (
-        'disease_code',
-        'pathogen',
-        'description',
-        'id',
-    )
+    fields = ('disease_code', 'pathogen', 'description', 'id',)
 #    success_url = reverse_lazy('disease_list')
 
 
+#################################### DISEASE ###############################################
+
+class DiscoverListView(ListView):
+    model = Discover
+    template_name = 'discover/discover_list.html'
+
+
+class DiscoverUpdateView(UpdateView):
+    model = Discover
+    template_name = 'discover/discover_edit.html'
+    fields = ('cname', 'disease_code', 'first_enc',)
+    success_url = reverse_lazy('discover_list')
+
+
+class DiscoverDeleteView(DeleteView):
+    model = Discover
+    template_name = 'discover/discover_delete.html'
+    success_url = reverse_lazy('discover_list')
+
+
+class DiscoverCreateView(CreateView):
+    model = Discover
+    template_name = 'discover/discover_new.html'
+    fields = ('cname', 'disease_code', 'first_enc',)
+    success_url = reverse_lazy('discover_list')
+
+
+#################################### DISEASE ###############################################
+
+class UserListView(ListView):
+    model = User
+    template_name = 'user/user_list.html'
+
+
+class UserDetailView(DetailView):
+    model = User
+    template_name = 'user/user_detail.html'
+
+
+class UserUpdateView(UpdateView):
+    model = User
+    template_name = 'user/user_edit.html'
+    fields = ('email', 'name', 'surname', 'salary', 'phone', 'cname')
+ 
+
+class UserDeleteView(DeleteView):
+    model = User
+    template_name = 'user/user_delete.html'
+    success_url = reverse_lazy('user_list')
+
+
+class UserCreateView(CreateView):
+    model = User 
+    template_name = 'user/user_new.html'
+    fields = ('email', 'name', 'surname', 'salary', 'phone', 'cname')

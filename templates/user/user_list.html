@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Users{% endblock title %}
+
+{% block content %}
+<h2>List of all users</h2>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Country</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for u in user_list %}
+        <tr>
+            <td><a href="{% url 'user_detail' u.pk %}">{{ u.email }}</a></td>
+            <td>{{ u.name }}</td>
+            <td>{{ u.surname }}</td>
+            <td>{{ u.salary }}</td>
+            <td>{{ u.phone }}</td>
+            <td>{{ u.cname }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <p><a href="{% url 'user_new' %}">Add a new user</a></p>
+
+
+{% endblock content %}

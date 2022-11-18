@@ -41,3 +41,36 @@ class Disease(models.Model):
         return reverse('disease_detail', kwargs={'pk': self.pk})
 
 
+class Discover(models.Model):
+    cname = models.ForeignKey(Country, on_delete=models.CASCADE)
+    disease_code = models.ForeignKey(Disease, on_delete=models.CASCADE)
+    first_enc = models.DateField()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['cname', 'disease_code'], name='unique_cname_disease_code_combination'
+            )
+        ]
+
+    def __str__(self):
+        return str(self.cname) + '-' + str(self.disease_code)
+
+
+class User(models.Model):
+    email = models.CharField(max_length=60, primary_key=True)
+    name = models.CharField(max_length=30)
+    surname = models.CharField(max_length=40)
+    salary = models.PositiveIntegerField()
+    phone = models.CharField(max_length=20)
+    cname = models.ForeignKey(Country, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.email
+
+    def get_absolute_url(self):
+        return reverse('user_detail', kwargs={'pk': self.pk})
+
+
+
+
