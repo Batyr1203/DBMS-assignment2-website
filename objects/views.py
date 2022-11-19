@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 
-from .models import DiseaseType, Disease, Country, Discover, User, PublicServant, Doctor
+from .models import DiseaseType, Disease, Country, Discover, User, PublicServant, Doctor, Specialize, Record
 
 
 class HomePageView(TemplateView):
@@ -202,6 +202,15 @@ class PublicServantDeleteView(DeleteView):
     success_url = reverse_lazy('user_list')
 
 
+class PublicServantCreateView(CreateView):
+    model = PublicServant
+    template_name = 'user/ps_new.html'
+    fields = ('email', 'department',)
+
+
+
+##############################################################################################################
+
 class DoctorUpdateView(UpdateView):
     model = Doctor
     template_name = 'user/d_edit.html'
@@ -214,3 +223,65 @@ class DoctorDeleteView(DeleteView):
     template_name = 'user/d_delete.html'
     success_url = reverse_lazy('user_list')
 
+
+class DoctorCreateView(CreateView):
+    model = Doctor
+    template_name = 'user/d_new.html'
+    fields = ('email', 'degree',)
+
+
+#################################### SPECIALIZE ###############################################
+
+class SpecializeListView(ListView):
+    model = Specialize
+    template_name = 'specialize/specialize_list.html'
+
+
+class SpecializeUpdateView(UpdateView):
+    model = Specialize
+    template_name = 'specialize/specialize_edit.html'
+    fields = ('disease_type_id', 'email')
+    success_url = reverse_lazy('specialize_list')
+
+
+class SpecializeDeleteView(DeleteView):
+    model = Specialize
+    template_name = 'specialize/specialize_delete.html'
+    success_url = reverse_lazy('specialize_list')
+
+
+class SpecializeCreateView(CreateView):
+    model = Specialize
+    template_name = 'specialize/specialize_new.html'
+    fields = ('disease_type_id', 'email')
+    success_url = reverse_lazy('specialize_list')
+
+
+#################################### RECORD ###############################################
+
+class RecordListView(ListView):
+    model = Record
+    template_name = 'record/record_list.html'
+
+
+class RecordDetailView(DetailView):
+    model = Record
+    template_name = 'record/record_detail.html'
+
+
+class RecordUpdateView(UpdateView):
+    model = Record
+    template_name = 'record/record_edit.html'
+    fields = ('email', 'cname', 'disease_code', 'total_deaths', 'total_patients')
+
+
+class RecordDeleteView(DeleteView):
+    model = Record
+    template_name = 'record/record_delete.html'
+    success_url = reverse_lazy('record_list')
+
+
+class RecordCreateView(CreateView):
+    model = Record
+    template_name = 'record/record_new.html'
+    fields = ('email', 'cname', 'disease_code', 'total_deaths', 'total_patients')

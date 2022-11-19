@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Specialize{% endblock title %}
+
+{% block content %}
+<h2>List of all Specializes</h2>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Disease ID</th>
+        <th scope="col">Doctor Email</th>
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for s in specialize_list %}
+        <tr>
+            <td>{{ s.id }}</a></td>
+            <td>{{ s.email }}</td>
+            <td><a href="{% url 'specialize_edit' s.pk %}">Edit</a> | <a href="{% url 'specialize_delete' s.pk %}">Delete</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <p><a href="{% url 'specialize_new' %}">Add a new specialize</a></p>
+
+
+{% endblock content %}

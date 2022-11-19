@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Record{% endblock title %}
+
+{% block content %}
+<h2>List of all Records</h2>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Public Servant Email</th>
+        <th scope="col">Country</th>
+        <th scope="col">Disease Code</th>
+        <th scope="col">Total Deaths</th>
+        <th scope="col">Total Patients</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for r in record_list %}
+        <tr>
+            <td>{{ r.email }}</td>
+            <td>{{ r.cname }}</td>
+            <td>{{ r.disease_code }}</td>
+            <td>{{ r.total_deaths }}</td>
+            <td>{{ r.total_patients }}</td>
+            <td><a href="{% url 'record_detail' r.pk %}">Detail</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <p><a href="{% url 'record_new' %}">Add a new Record</a></p>
+
+
+{% endblock content %}

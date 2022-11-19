@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="article-entry">
+    <h2>Record by '{{ record.email }}'</h2>
+    <p><b>Country:</b> &nbsp; {{  record.cname }}</p>
+    <p><b>Disease Code:</b> &nbsp; {{ record.disease_code }}</p>
+    <p><b>Total Deaths:</b> &nbsp; {{ record.total_deaths }}</p>
+    <p><b>Total Patients:</b> &nbsp; {{ record.total_patients }}</p>
+</div>
+
+<p><a href="{% url 'record_edit' record.pk %}">Edit</a> | <a href="{% url 'record_delete' record.pk %}">Delete</a></p>
+<p>Back to <a href="{% url 'record_list' %}">records list</a>.</p>
+{% endblock content %}

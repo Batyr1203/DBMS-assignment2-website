@@ -17,6 +17,27 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center
           justify-content-lg-start">
           <a class="navbar-brand" href="{% url 'home' %}">Diseases Database</a>
+            
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <div class="dropdown text-end">
+              <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
+                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                Quick Links
+              </a>
+              <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" href="{% url 'disease_type_list' %}">Diseases</a></li>
+                <li><a class="dropdown-item" href="{% url 'country_list' %}">Countries</a></li>
+                <li><a class="dropdown-item" href="{% url 'disease_list' %}">Diseases</a></li>
+                <li><a class="dropdown-item" href="{% url 'discover_list' %}">Discoveries</a></li>
+                <li><a class="dropdown-item" href="{% url 'user_list' %}">Users</a></li>
+                <li><a class="dropdown-item" href="{% url 'specialize_list' %}">Specializes</a></li>
+                <li><a class="dropdown-item" href="{% url 'record_list' %}">Records</a></li>
+              </ul>
+            </div>
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
             <div class="dropdown text-end">
               <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,10 +49,10 @@
                 <li><a class="dropdown-item" href="{% url 'disease_new' %}">Disease</a></li>
                 <li><a class="dropdown-item" href="{% url 'discover_new' %}">Discovery</a></li>
                 <li><a class="dropdown-item" href="{% url 'user_new' %}">User</a></li>
-                <li><a class="dropdown-item" href="#">Public Servant</a></li>
-                <li><a class="dropdown-item" href="#">Doctor</a></li>
-                <li><a class="dropdown-item" href="#">Specialize</a></li>
-                <li><a class="dropdown-item" href="#">Record</a></li>
+                <li><a class="dropdown-item" href="{% url 'public_servant_new' %}">Public Servant</a></li>
+                <li><a class="dropdown-item" href="{% url 'doctor_new' %}">Doctor</a></li>
+                <li><a class="dropdown-item" href="{% url 'specialize_new' %}">Specialize</a></li>
+                <li><a class="dropdown-item" href="{% url 'record_new' %}">Record</a></li>
               </ul>
             </div>
         </div>

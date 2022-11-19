@@ -7,15 +7,33 @@ from .views import (
     CountryListView, CountryDetailView, CountryUpdateView, CountryDeleteView, CountryCreateView,
     DiscoverListView, DiscoverUpdateView, DiscoverDeleteView, DiscoverCreateView,
     UserListView, UserDetailView, UserUpdateView, UserDeleteView, UserCreateView, list_users,
-    PublicServantUpdateView, PublicServantDeleteView, DoctorDeleteView, DoctorUpdateView,
+    PublicServantUpdateView, PublicServantDeleteView, PublicServantCreateView, 
+    DoctorDeleteView, DoctorUpdateView, DoctorCreateView,
+    SpecializeListView, SpecializeUpdateView, SpecializeDeleteView, SpecializeCreateView,
+    RecordListView, RecordDetailView, RecordUpdateView, RecordDeleteView, RecordCreateView,
 )
 
 
 urlpatterns = [
-    path('users/<str:pk>/delete/doctor/', DoctorDeleteView.as_view(), name='doctor_delete'),
-    path('users/<str:pk>/edit/doctor/', DoctorUpdateView.as_view(), name='doctor_edit'),
-    path('users/<str:pk>/delete/public_servant/', PublicServantDeleteView.as_view(), name='public_servant_delete'),
-    path('users/<str:pk>/edit/public_servant/', PublicServantUpdateView.as_view(), name='public_servant_edit'),
+
+    path('records/new/', RecordCreateView.as_view(), name='record_new'),
+    path('records/<str:pk>/delete/', RecordDeleteView.as_view(), name='record_delete'),
+    path('records/<str:pk>/edit/', RecordUpdateView.as_view(), name='record_edit'),
+    path('records/<str:pk>/', RecordDetailView.as_view(), name='record_detail'),
+    path('records/', RecordListView.as_view(), name='record_list'),
+
+    path('specializes/<str:pk>/delete/', SpecializeDeleteView.as_view(), name='specialize_delete'),
+    path('specializes/<str:pk>/edit/', SpecializeUpdateView.as_view(), name='specialize_edit'),
+    path('specializes/new/', SpecializeCreateView.as_view(), name='specialize_new'),
+    path('specializes/', SpecializeListView.as_view(), name='specialize_list'),
+
+    path('public_servants/new', PublicServantCreateView.as_view(), name='public_servant_new'),
+    path('doctors/new', DoctorCreateView.as_view(), name='doctor_new'),
+    path('users/<str:pk>/doctor/delete/', DoctorDeleteView.as_view(), name='doctor_delete'),
+    path('users/<str:pk>/doctor/edit/', DoctorUpdateView.as_view(), name='doctor_edit'),
+    path('users/<str:pk>/public_servant/delete/', PublicServantDeleteView.as_view(), name='public_servant_delete'),
+    path('users/<str:pk>/public_servant/edit/', PublicServantUpdateView.as_view(), name='public_servant_edit'),
+    
     path('users/<str:pk>/delete', UserDeleteView.as_view(), name='user_delete'),
     path('users/<str:pk>/edit', UserUpdateView.as_view(), name='user_edit'),
     path('users/<str:pk>/', UserDetailView.as_view(), name='user_detail'),

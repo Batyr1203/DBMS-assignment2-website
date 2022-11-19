@@ -94,3 +94,38 @@ class Doctor(models.Model):
         return reverse('user_detail', kwargs={'pk': self.pk})
 
 
+class Specialize(models.Model):
+    disease_type_id = models.ForeignKey(DiseaseType, on_delete=models.CASCADE)
+    email = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['disease_type_id', 'email'], name='unique_id_email_combination'
+            )
+        ]
+    
+    def __str__(self):
+        return str(self.disease_type_id) + '-' + str(self.email)
+
+
+class Record(models.Model):
+    email = models.ForeignKey(PublicServant, on_delete=models.CASCADE)
+    cname = models.ForeignKey(Country, on_delete=models.CASCADE)
+    disease_code = models.ForeignKey(Disease, on_delete=models.CASCADE)
+    total_deaths = models.PositiveIntegerField()
+    total_patients = models.PositiveIntegerField()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['email', 'cname', 'disease_code'], name='unique_email_cname_disease_code_combination'
+            )
+        ]
+
+    def __str__(self):
+        return str(self.email) + '-' + str(self.cname) + '-' + str(self.disease_code)
+
+    def get_absolute_url(self):
+        return reverse('record_detail', kwargs={'pk': self.pk})
+
