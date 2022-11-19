@@ -6,16 +6,22 @@ from .views import (
     DiseaseListView, DiseaseDetailView, DiseaseUpdateView, DiseaseDeleteView, DiseaseCreateView,
     CountryListView, CountryDetailView, CountryUpdateView, CountryDeleteView, CountryCreateView,
     DiscoverListView, DiscoverUpdateView, DiscoverDeleteView, DiscoverCreateView,
-    UserListView, UserDetailView, UserUpdateView, UserDeleteView, UserCreateView,
+    UserListView, UserDetailView, UserUpdateView, UserDeleteView, UserCreateView, list_users,
+    PublicServantUpdateView, PublicServantDeleteView, DoctorDeleteView, DoctorUpdateView,
 )
 
 
 urlpatterns = [
+    path('users/<str:pk>/delete/doctor/', DoctorDeleteView.as_view(), name='doctor_delete'),
+    path('users/<str:pk>/edit/doctor/', DoctorUpdateView.as_view(), name='doctor_edit'),
+    path('users/<str:pk>/delete/public_servant/', PublicServantDeleteView.as_view(), name='public_servant_delete'),
+    path('users/<str:pk>/edit/public_servant/', PublicServantUpdateView.as_view(), name='public_servant_edit'),
     path('users/<str:pk>/delete', UserDeleteView.as_view(), name='user_delete'),
     path('users/<str:pk>/edit', UserUpdateView.as_view(), name='user_edit'),
     path('users/<str:pk>/', UserDetailView.as_view(), name='user_detail'),
     path('users/new', UserCreateView.as_view(), name='user_new'),    
-    path('users/', UserListView.as_view(), name='user_list'),
+    # path('users/', UserListView.as_view(), name='user_list'),
+    path('users/', list_users, name='user_list'),
 
     path('discoveries/new', DiscoverCreateView.as_view(), name='discover_new'),
     path('discoveries/<str:pk>/delete/', DiscoverDeleteView.as_view(), name='discover_delete'),

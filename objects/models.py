@@ -72,5 +72,25 @@ class User(models.Model):
         return reverse('user_detail', kwargs={'pk': self.pk})
 
 
+class PublicServant(models.Model):
+    email = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    department = models.CharField(max_length=20)
+
+    def __str__(self):
+        return str(self.email)
+
+    def get_absolute_url(self):
+        return reverse('user_detail', kwargs={'pk': self.pk})
+
+
+class Doctor(models.Model):
+    email = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    degree = models.CharField(max_length=20)
+
+    def __str__(self):
+        return str(self.email)
+
+    def get_absolute_url(self):
+        return reverse('user_detail', kwargs={'pk': self.pk})
 
 

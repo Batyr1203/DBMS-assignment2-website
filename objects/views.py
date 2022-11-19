@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 
-from .models import DiseaseType, Disease, Country, Discover, User
+from .models import DiseaseType, Disease, Country, Discover, User, PublicServant, Doctor
 
 
 class HomePageView(TemplateView):
@@ -144,11 +144,24 @@ class DiscoverCreateView(CreateView):
     success_url = reverse_lazy('discover_list')
 
 
-#################################### DISEASE ###############################################
+#################################### USER ###############################################
 
 class UserListView(ListView):
     model = User
     template_name = 'user/user_list.html'
+
+
+def list_users(request):
+    users = User.objects.all()
+    ps_emails = [ps.email.email for ps in PublicServant.objects.all()]
+    ds_emails = [ds.email.email for ds in Doctor.objects.all()]
+    template = loader.get_template('user/user_list.html')
+    context = {
+        'user_list': users,
+        'ps_emails': ps_emails,
+        'ds_emails': ds_emails,
+    }
+    return HttpResponse(template.render(context, request))
 
 
 class UserDetailView(DetailView):
@@ -172,3 +185,32 @@ class UserCreateView(CreateView):
     model = User 
     template_name = 'user/user_new.html'
     fields = ('email', 'name', 'surname', 'salary', 'phone', 'cname')
+
+
+#################################### PUBLIC SERVANT and DOCTOR ##############################################
+
+class PublicServantUpdateView(UpdateView):
+    model = PublicServant
+    template_name = 'user/ps_edit.html'
+    fields = ('department',)
+    success_url = reverse_lazy('user_list')
+
+
+class PublicServantDeleteView(DeleteView):
+    model = PublicServant
+    template_name = 'user/ps_delete.html'
+    success_url = reverse_lazy('user_list')
+
+
+class DoctorUpdateView(UpdateView):
+    model = Doctor
+    template_name = 'user/d_edit.html'
+    fields = ('degree',)
+    success_url = reverse_lazy('user_list')
+
+
+class DoctorDeleteView(DeleteView):
+    model = Doctor
+    template_name = 'user/d_delete.html'
+    success_url = reverse_lazy('user_list')
+
