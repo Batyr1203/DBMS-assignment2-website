@@ -10,7 +10,7 @@ from .models import DiseaseType, Disease, Country, Discover, User, PublicServant
 
 
 class HomePageView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'home1.html'
 
 #################################### DISEASE_TYPE ###############################################
 

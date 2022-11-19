@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+    
+<main>
+
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg> -->
+        {% load static %}
+        <img style="opacity:0.9;" src="{% static 'images/structure.jpeg' %}" alt="Card image cap"> 
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Disease Types</h1>
+            <p>Information about disease types and corresponding diseases.</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'disease_type_list' %}">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg> -->
+        {% load static %}
+        <img style="opacity:0.6;" src="{% static 'images/virus.jpg' %}" alt="Card image cap"> 
+
+
+        <div class="container">
+          <div class="carousel-caption">
+            <h1 >Diseases</h1>
+            <p >Various diseases, their pathogens and descriptions.</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'disease_list' %}">Show diseases</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg> -->
+        {% load static %}
+        <img style="opacity:0.6;" src="{% static 'images/users.png' %}" alt="Card image cap"> 
+
+
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1 style="color:black">Users</h1>
+            <p style="color:black">Information about Public servants, Doctors and regular users.</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'user_list' %}">List all Users</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
+        <a href="{% url 'country_list' %}"><img class="circular_image" src="{% static 'images/countries.jpg' %}" alt="Card image cap"></a>
+
+        <h2>Countries</h2>
+        <p>Countries and their populations</p>
+        <p><a class="btn btn-secondary" href="{% url 'country_list' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
+        <a href="{% url 'discover_list' %}"><img class="circular_image" src="{% static 'images/micro.webp' %}" alt="Card image cap"></a>
+        
+        <h2>Discoveries</h2>
+        <p>Diseases, countries of origin, 1st encountered dates</p>
+        <p><a class="btn btn-secondary" href="{% url 'discover_list' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
+        <a href="{% url 'record_list' %}"><img class="circular_image" src="{% static 'images/record.jpg' %}" alt="Card image cap"></a>
+
+        <h2>Records</h2>
+        <p>Records of diseases by public servants</p>
+        <p><a class="btn btn-secondary" href="{% url 'record_list' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+  </div><!-- /.container -->
+
+
+
+{% endblock content %}
